@@ -1,5 +1,7 @@
 はい、このTic-Tac-Toeアプリケーションでは3つの主要なTypeScriptReact（TSX）ファイルが使用されています。それぞれの役割について説明します：
 
+---
+
 1. `pages/index.tsx`:
 
 役割：
@@ -16,6 +18,8 @@
 - `jumpTo` 関数で過去の手に戻る機能を提供
 - `Board` コンポーネントを使用してゲームボードを表示
 
+---
+
 2. `components/Board.tsx`:
 
 役割：
@@ -26,6 +30,8 @@
 - `squares` プロップを受け取り、現在のボードの状態を表示
 - `onClick` プロップを受け取り、各マスがクリックされたときの動作を定義
 - `renderSquare` 関数で各マスを生成
+
+---
 
 3. `components/Square.tsx`:
 
