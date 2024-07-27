@@ -1,4 +1,4 @@
-## Tic-Tac-Toeゲームをnextjsで作ってみたら成功した
+## Tic-Tac-Toeゲームをnextjsで作ってみた
 
 ---
 
