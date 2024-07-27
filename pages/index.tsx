@@ -34,7 +34,46 @@ export default function Home() {
         return null;
     };
 
-    // ... 他のコードは同じ ...
+    const handleClick = (i: number): void => {
+        const currentHistory = history.slice(0, stepNumber + 1);
+        const current = currentHistory[currentHistory.length - 1];
+        const squares = [...current];
+        if (calculateWinner(squares) || squares[i]) {
+            return;
+        }
+        squares[i] = xIsNext ? 'X' : 'O';
+        setHistory([...currentHistory, squares]);
+        setStepNumber(currentHistory.length);
+        setXIsNext(!xIsNext);
+    };
+
+    const jumpTo = (step: number): void => {
+        setStepNumber(step);
+        setXIsNext(step % 2 === 0);
+    };
+
+    const current = history[stepNumber];
+    const winner = calculateWinner(current);
+
+    const moves = history.map((step, move) => {
+        const desc = move ?
+            'Go to move #' + move :
+            'Go to game start';
+        return (
+            <li key={move}>
+                <button onClick={() => jumpTo(move)}>{desc}</button>
+            </li>
+        );
+    });
+
+    let status: string;
+    if (winner) {
+        status = 'Winner: ' + winner;
+    } else if (current.every(square => square !== null)) {
+        status = 'Draw';
+    } else {
+        status = 'Next player: ' + (xIsNext ? 'X' : 'O');
+    }
 
     const handleSizeChange = (newSize: number) => {
         setBoardSize(newSize);
