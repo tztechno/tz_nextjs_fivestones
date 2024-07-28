@@ -11,7 +11,9 @@ git commit -m “2024-07-28”
 git push -u origin main
 
 
+npm run dev
 
+http://localhost:3000
 
 
 
