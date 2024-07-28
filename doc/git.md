@@ -1,10 +1,10 @@
 ```
-https://github.com/tztechno/vercel_tick.git
+https://github.com/tztechno/vercel_fivestones.git
 
-cd vercel_tick
+cd vercel_fivestones
 
 git init
-git remote add origin https://github.com/tztechno/vercel_tick
+git remote add origin https://github.com/tztechno/vercel_fivestones
 git pull
 git add .
 git commit -m “2024-07-28”

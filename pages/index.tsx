@@ -6,7 +6,7 @@ import Board from '../components/Board';
 type SquareValue = 'X' | 'O' | null;
 
 export default function Home() {
-    const [boardSize, setBoardSize] = useState<number>(3);
+    const [boardSize, setBoardSize] = useState<number>(11);
     const [history, setHistory] = useState<SquareValue[][]>([Array(boardSize * boardSize).fill(null)]);
     const [stepNumber, setStepNumber] = useState<number>(0);
     const [xIsNext, setXIsNext] = useState<boolean>(true);
@@ -95,9 +95,9 @@ export default function Home() {
                     <label>
                         Board Size:
                         <select value={boardSize} onChange={(e) => handleSizeChange(Number(e.target.value))}>
-                            <option value="3">3x3</option>
-                            <option value="4">4x4</option>
-                            <option value="5">5x5</option>
+                            <option value="11">11x11</option>
+                            <option value="15">15x15</option>
+                            <option value="19">19x19</option>
                         </select>
                     </label>
                 </div>
