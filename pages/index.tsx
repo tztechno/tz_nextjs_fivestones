@@ -5,34 +5,46 @@ import Board from '../components/Board';
 
 type SquareValue = 'X' | 'O' | null;
 
-export default function Home() {
-    const [boardSize, setBoardSize] = useState<number>(11);
-    const [history, setHistory] = useState<SquareValue[][]>([Array(boardSize * boardSize).fill(null)]);
-    const [stepNumber, setStepNumber] = useState<number>(0);
-    const [xIsNext, setXIsNext] = useState<boolean>(true);
+const calculateWinner = (squares: SquareValue[]): SquareValue => {
+    const winLength = 5; // 勝利条件の連続数
+    const lines: number[][] = [];
 
-    const calculateWinner = (squares: SquareValue[]): SquareValue => {
-        const lines = [];
-        // 横のライン
-        for (let i = 0; i < boardSize; i++) {
-            lines.push(Array(boardSize).fill(0).map((_, j) => i * boardSize + j));
+    // 横のライン
+    for (let i = 0; i < boardSize; i++) {
+        for (let j = 0; j <= boardSize - winLength; j++) {
+            lines.push(Array(winLength).fill(0).map((_, k) => i * boardSize + j + k));
         }
-        // 縦のライン
-        for (let i = 0; i < boardSize; i++) {
-            lines.push(Array(boardSize).fill(0).map((_, j) => j * boardSize + i));
-        }
-        // 対角線
-        lines.push(Array(boardSize).fill(0).map((_, i) => i * boardSize + i));
-        lines.push(Array(boardSize).fill(0).map((_, i) => i * boardSize + (boardSize - 1 - i)));
+    }
 
-        for (let i = 0; i < lines.length; i++) {
-            const line = lines[i];
-            if (line.every(index => squares[index] && squares[index] === squares[line[0]])) {
-                return squares[line[0]];
-            }
+    // 縦のライン
+    for (let i = 0; i <= boardSize - winLength; i++) {
+        for (let j = 0; j < boardSize; j++) {
+            lines.push(Array(winLength).fill(0).map((_, k) => (i + k) * boardSize + j));
         }
-        return null;
-    };
+    }
+
+    // 右下がりの対角線
+    for (let i = 0; i <= boardSize - winLength; i++) {
+        for (let j = 0; j <= boardSize - winLength; j++) {
+            lines.push(Array(winLength).fill(0).map((_, k) => (i + k) * boardSize + j + k));
+        }
+    }
+
+    // 左下がりの対角線
+    for (let i = 0; i <= boardSize - winLength; i++) {
+        for (let j = winLength - 1; j < boardSize; j++) {
+            lines.push(Array(winLength).fill(0).map((_, k) => (i + k) * boardSize + j - k));
+        }
+    }
+
+    for (let i = 0; i < lines.length; i++) {
+        const line = lines[i];
+        if (line.every(index => squares[index] && squares[index] === squares[line[0]])) {
+            return squares[line[0]];
+        }
+    }
+    return null;
+};
 
     const handleClick = (i: number): void => {
         const currentHistory = history.slice(0, stepNumber + 1);
