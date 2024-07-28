@@ -10,11 +10,11 @@ git add .
 git commit -m “2024-07-28”
 git push -u origin main
 
-
+cd vercel_fivestones
 npm run dev
 
 http://localhost:3000
 
-babel外したら動いた
+npm install
 
 ```
