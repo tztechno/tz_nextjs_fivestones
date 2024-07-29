@@ -103,12 +103,12 @@ const Home: React.FC = () => {
     return (
         <div className={styles.container}>
             <Head>
-                <title>Tic-Tac-Toe</title>
+                <title>Five Stones</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
             <main className={styles.main}>
-                <h1 className={styles.title}>Tic-Tac-Toe</h1>
+                <h1 className={styles.title}>Five Stones</h1>
                 <div>
                     <label>
                         Board Size:
