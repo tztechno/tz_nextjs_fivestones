@@ -114,8 +114,8 @@ const Home: React.FC = () => {
                         Board Size:
                         <select value={boardSize} onChange={(e) => handleSizeChange(Number(e.target.value))}>
                             <option value="11">11x11</option>
+                            <option value="13">13x13</option>
                             <option value="15">15x15</option>
-                            <option value="19">19x19</option>
                         </select>
                     </label>
                 </div>
